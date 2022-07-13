@@ -4,13 +4,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter } from 'react-router-dom';
+import ProgramProvider from 'store/ProgramsProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <CssBaseline />
     <BrowserRouter>
-      <App />
+      <ProgramProvider>
+        <App />
+      </ProgramProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

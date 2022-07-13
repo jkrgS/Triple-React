@@ -1,28 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
-async function getPrograms() {
-  return fetch(`http://localhost:4002/programs`, { meTableCellod: 'GET' }).then((response) =>
-    response.json()
-  );
-}
-
+import { usePrograms } from 'store/ProgramsProvider';
 const Programs = () => {
-  const [programs, setPrograms] = useState(null);
-  useEffect(() => {
-    async function loadPeople() {
-      const programs = await getPrograms();
-      setPrograms(programs);
-    }
-    loadPeople();
-  }, []);
+  const { programsList, programsListLoading } = usePrograms();
 
-  if (!programs) {
+  if (programsListLoading || !programsList) {
     return <div>Loading</div>;
   }
 
@@ -39,7 +26,7 @@ const Programs = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {programs.map((program) => (
+          {programsList.map((program) => (
             <tr key={program.id}>
               <TableCell>{program.name}</TableCell>
               <TableCell>{program.return_percentage}</TableCell>
