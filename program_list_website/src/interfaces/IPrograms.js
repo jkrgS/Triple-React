@@ -6,7 +6,15 @@ const IProgramsList = [IProgram];
 
 // prop types of the searching url params
 const IProgramUrlParams = {
-  filterType: { search: 'name_like', filter: 'status' },
+  filterType: null,
+  value: '',
 };
 
-export { IProgramUrlParams, IProgramsList };
+// prop types of the searching url params
+const IProgramCheckboxes = [
+  { id: 'Active', status: false },
+  { id: 'Paused', status: false },
+  { id: 'Pause_Scheduled', status: false },
+];
+
+export { IProgramUrlParams, IProgramsList, IProgramCheckboxes };

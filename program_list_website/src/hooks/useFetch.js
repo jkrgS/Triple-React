@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-function useFetch(uri, initialValue = null) {
+const useFetch = (uri, initialValue = null) => {
   const [data, setData] = useState(initialValue); // store the data of the request
   const [loading, setLoading] = useState(true); // store the loading, by default true
   const [error, setError] = useState(null); // store the error
@@ -37,6 +37,6 @@ function useFetch(uri, initialValue = null) {
     loading,
     error,
   };
-}
+};
 
 export default useFetch;
