@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { getPrograms } from 'services/programs';
 
 // crete the context - w/ default values from interface
-const ProgramContext = createContext(IProgramContext);
+export const ProgramContext = createContext(IProgramContext);
 
 // provide a custom hook to access the context
 const usePrograms = () => useContext(ProgramContext);
