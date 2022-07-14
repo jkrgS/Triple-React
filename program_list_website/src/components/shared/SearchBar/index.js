@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Search = styled.div`
+  margin: 1rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
