@@ -13,6 +13,7 @@ const ProgramProvider = ({ children }) => {
   const [programsList, setProgramsList] = useState([]);
   const [uri, setUri] = useState(process.env.REACT_APP_SERVER_DOMAIN);
   const [programsListLoading, setProgramsListLoading] = useState(true); // store the loading, by default true
+  const [emptyResults, setEmptyResults] = useState(false); // store the loading, by default true
   const [error, setError] = useState(null); // store the error
 
   // pass to fetch the desired domain to serve the proper data(all programs & filtered ones)
@@ -35,7 +36,9 @@ const ProgramProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    // reset state values
     setProgramsListLoading(true);
+    setEmptyResults(false);
     setError(null);
 
     // use controller object
@@ -43,7 +46,15 @@ const ProgramProvider = ({ children }) => {
     // the signal property used to communicate with/abort a DOM request
     const { signal } = controller;
 
-    getPrograms(uri, 'GET', signal, setProgramsList, setProgramsListLoading, setError);
+    getPrograms(
+      uri,
+      'GET',
+      signal,
+      setProgramsList,
+      setProgramsListLoading,
+      setEmptyResults,
+      setError
+    );
 
     return () => {
       controller.abort(); // abort on the use effect cleanup, to avoid memory leaks for multiple requests
@@ -52,7 +63,7 @@ const ProgramProvider = ({ children }) => {
 
   return (
     <ProgramContext.Provider
-      value={{ programsList, programsListLoading, getFilteredPrograms, error }}
+      value={{ programsList, programsListLoading, emptyResults, getFilteredPrograms, error }}
     >
       {children}
     </ProgramContext.Provider>

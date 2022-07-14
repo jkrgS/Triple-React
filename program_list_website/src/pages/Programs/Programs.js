@@ -9,6 +9,7 @@ import { usePrograms } from 'store/ProgramsProvider';
 import SearchBar from 'components/shared/SearchBar';
 import { IProgramCheckboxes } from 'interfaces/IPrograms';
 import { debounce } from 'tools/debounce';
+import NoDataFound from 'components/shared/NoDataFound';
 
 const Programs = () => {
   // state for checkboxes
@@ -18,7 +19,7 @@ const Programs = () => {
   const searchTextInput = useRef(null);
 
   // interact on checkbox change
-  const { programsList, programsListLoading, getFilteredPrograms } = usePrograms();
+  const { programsList, programsListLoading, emptyResults, getFilteredPrograms } = usePrograms();
 
   const handleCheckboxChange = (e) => {
     // destruct the event values
@@ -70,9 +71,9 @@ const Programs = () => {
         searchRef={searchTextInput}
         handleCheckboxChange={handleCheckboxChange}
         handleSearchQueryChange={searchQueryDebouncedResults}
-        disabled={programsListLoading || !programsList.length}
+        disabled={(programsListLoading || !programsList.length) && !emptyResults}
       />
-      {!programsListLoading && programsList && (
+      {!programsListLoading && !emptyResults && programsList && (
         <TableContainer>
           <Table>
             <TableHead>
@@ -98,7 +99,8 @@ const Programs = () => {
           </Table>
         </TableContainer>
       )}
-      {(programsListLoading || !programsList.length) && <div>Loading</div>}
+      {!emptyResults && (programsListLoading || !programsList.length) && <div>Loading</div>}
+      {emptyResults && !programsListLoading && !programsList.length && <NoDataFound />}
     </>
   );
 };
