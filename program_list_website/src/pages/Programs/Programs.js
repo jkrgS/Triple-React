@@ -10,6 +10,7 @@ import SearchBar from 'components/shared/SearchBar';
 import { IProgramCheckboxes } from 'interfaces/IPrograms';
 import { debounce } from 'tools/debounce';
 import NoDataFound from 'components/shared/NoDataFound';
+import { LinearProgressBar } from 'components/shared/ProgressBar';
 
 const Programs = () => {
   // state for checkboxes
@@ -73,7 +74,7 @@ const Programs = () => {
         handleSearchQueryChange={searchQueryDebouncedResults}
         disabled={(programsListLoading || !programsList.length) && !emptyResults}
       />
-      {!programsListLoading && !emptyResults && programsList && (
+      {!programsListLoading && !emptyResults && !!programsList.length && (
         <TableContainer>
           <Table>
             <TableHead>
@@ -99,7 +100,7 @@ const Programs = () => {
           </Table>
         </TableContainer>
       )}
-      {!emptyResults && (programsListLoading || !programsList.length) && <div>Loading</div>}
+      {!emptyResults && (programsListLoading || !programsList.length) && <LinearProgressBar />}
       {emptyResults && !programsListLoading && !programsList.length && <NoDataFound />}
     </>
   );
