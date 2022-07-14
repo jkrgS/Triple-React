@@ -32,6 +32,7 @@ const ProgramProvider = ({ children }) => {
       }
     }
 
+    // sett the proper uri of the request
     setUri(mainUri);
   };
 
@@ -43,9 +44,11 @@ const ProgramProvider = ({ children }) => {
 
     // use controller object
     const controller = new AbortController();
+
     // the signal property used to communicate with/abort a DOM request
     const { signal } = controller;
 
+    // method that fetch the data from the provided api, the update of the state included within the method
     getPrograms(
       uri,
       'GET',

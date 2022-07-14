@@ -19,7 +19,7 @@ const App = () => {
     <>
       <AppHeader />
       <Container component="main" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-        <Suspense fallback={<div>Loading</div>}>{routes}</Suspense>
+        <Suspense>{routes}</Suspense>
       </Container>
     </>
   );
