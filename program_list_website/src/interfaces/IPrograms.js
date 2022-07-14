@@ -1,9 +1,3 @@
-// program object
-const IProgram = { id: 0, name: '', return_percentage: '', threshold: 0, status: '', pause_at: '' };
-
-// programs list of  program object
-const IProgramsList = [IProgram];
-
 // prop types of the searching url params
 const IProgramUrlParams = {
   filterType: null,
@@ -12,9 +6,9 @@ const IProgramUrlParams = {
 
 // prop types of the searching url params
 const IProgramCheckboxes = [
-  { id: 'Active', status: false },
-  { id: 'Paused', status: false },
-  { id: 'Pause_Scheduled', status: false },
+  { id: 'ACTIVE', label: 'Active', status: false },
+  { id: 'PAUSED', label: 'Paused', status: false },
+  { id: 'PAUSE_SCHEDULED', label: 'Pause Scheduled', status: false },
 ];
 
-export { IProgramUrlParams, IProgramsList, IProgramCheckboxes };
+export { IProgramUrlParams, IProgramCheckboxes };

@@ -1,5 +1,5 @@
 import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Search = styled.div`
@@ -12,14 +12,22 @@ const FormGroupContainer = styled(FormGroup)`
   display: block;
 `;
 
-const SearchBar = ({ handleChange, checked, setSearchQuery }) => {
+const SearchBar = ({
+  handleCheckboxChange,
+  handleSearchQueryChange,
+  checked,
+  searchRef,
+  disabled,
+}) => {
   return (
     <Search>
       <TextField
         id="outlined-basic"
-        onInput={(e) => setSearchQuery(e.target.value)}
+        inputRef={searchRef}
+        onInput={handleSearchQueryChange}
         label="Search"
         variant="outlined"
+        disabled={disabled}
       />
       <FormGroupContainer>
         {checked.map((checkbox) => (
@@ -29,12 +37,13 @@ const SearchBar = ({ handleChange, checked, setSearchQuery }) => {
               <Checkbox
                 id={checkbox.id}
                 checked={checkbox.status}
-                onChange={handleChange}
+                onChange={handleCheckboxChange}
                 inputProps={{ 'arial-label': 'checkbox' }}
                 style={{ width: '30px', height: '30px' }}
+                disabled={disabled}
               />
             }
-            label={checkbox.id}
+            label={checkbox.label}
           />
         ))}
       </FormGroupContainer>
