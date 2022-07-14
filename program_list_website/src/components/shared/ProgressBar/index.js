@@ -10,7 +10,7 @@ const Container = styled.div`
 export const LinearProgressBar = () => {
   return (
     <Container>
-      <LinearProgress />
+      <LinearProgress data-testid="linear-progress-bar-element" />
     </Container>
   );
 };

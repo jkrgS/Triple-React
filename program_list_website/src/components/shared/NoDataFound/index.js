@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const NoDataFound = () => {
-  return <Container>No Data Found</Container>;
+  return <Container data-testid="no-data-found-element">No Data Found</Container>;
 };
 
 export default NoDataFound;
