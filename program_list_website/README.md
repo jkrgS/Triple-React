@@ -49,3 +49,9 @@ If no filters are set, it returns by default all the programs
 - We used MUI https://mui.com/ for visual components. Feel free to use any of them to improve the look and feel of the app. Some components, like the Progress indicator, would be good candidates to improve some existing code that gives the user a poor visual experience.
 - Feel free to use any additional library you may need to use.
 - For testing, we expect to use react-testing-library, but if you have any other preference please use it and we can comment in the PR/interview.
+
+
+### New comments / after new implementations 
+- Create new ".env.development.local" at the root with the suggested variable from the ".env.example" file within the root
+- Run e2e test with the ```npm run e2e-test``` script
+- Run unit tests with the ```npm run test``` script
